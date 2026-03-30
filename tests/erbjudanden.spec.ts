@@ -1,25 +1,24 @@
 import { test, expect } from '@playwright/test';
 
-test('Erbjudanden navigation works (R1-R3)', async ({ page }) => {
-  // R1: Open homepage
+test('R1: Erbjudanden is visible in navigation', async ({ page }) => {
   await page.goto('https://www.vasscompany.se/');
 
-  // Accept cookies if needed (optional safeguard)
-  const acceptButton = page.getByRole('button', { name: /accept/i });
-  if (await acceptButton.isVisible().catch(() => false)) {
-    await acceptButton.click();
-  }
+  const link = page.getByRole('link', { name: 'Erbjudanden', exact: true });
+  await expect(link).toBeVisible();
+});
 
-  // R1: Verify "Erbjudanden" is visible
-  const erbjudandenLink = page.getByRole('link', { name: 'Erbjudanden', exact: true });
-  await expect(erbjudandenLink).toBeVisible();
+test('R2: User can open Erbjudanden from navigation', async ({ page }) => {
+  await page.goto('https://www.vasscompany.se/');
 
-  // R2: Click it
-  await erbjudandenLink.click();
+  const link = page.getByRole('link', { name: 'Erbjudanden', exact: true });
+  await link.click();
 
-  // R3: Verify URL changed
-  await expect(page).not.toHaveURL('https://www.vasscompany.se/');
+  await expect(page).toHaveURL(/erbjudanden/i);
+});
 
-  // R3: Verify content exists (loose check for now)
-  await expect(page.locator('body')).toContainText(/Erbjudanden/i);
+test('R3: Destination is confirmed by URL and content', async ({ page }) => {
+  await page.goto('https://www.vasscompany.se/erbjudanden/');
+
+  await expect(page).toHaveURL(/erbjudanden/i);
+  await expect(page.locator('body')).toContainText(/erbjudanden|våra erbjudanden/i);
 });
