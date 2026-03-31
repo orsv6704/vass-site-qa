@@ -1,0 +1,195 @@
+{
+  "feature_id": "erbjudanden",
+  "feature_name": "Erbjudanden",
+  "source_url": "https://www.vasscompany.se/erbjudanden/",
+  "language": "sv",
+  "platform": "desktop",
+  "scope": "smoke",
+  "assumptions": [
+    "The page is publicly accessible",
+    "No login is required",
+    "The smoke scope verifies presence and identity, not deep interaction flows",
+    "Offer categories are treated as separate visible requirements"
+  ],
+  "open_questions": [
+    "Which offer categories are business-critical and should later be upgraded from visibility checks to click/navigation checks?",
+    "Should the contact and newsletter areas later include validation behavior, or remain presence-only?"
+  ],
+  "requirements": [
+    {
+      "id": "R1",
+      "title": "Erbjudanden page identity is visible",
+      "requirement": "A desktop user shall be able to open the Erbjudanden page and confirm that the correct destination has loaded.",
+      "observable_outcome": "The URL contains '/erbjudanden/' and the heading 'Våra erbjudanden' is visible.",
+      "acceptance_criteria": [
+        "Given the user opens the Erbjudanden page on desktop, when the page finishes loading, then the URL contains '/erbjudanden/'",
+        "Given the page has loaded, then the visible heading 'Våra erbjudanden' is present"
+      ],
+      "candidate_test_cases": [
+        "Verify the URL contains '/erbjudanden/'",
+        "Verify the heading 'Våra erbjudanden' is visible"
+      ],
+      "priority": "high"
+    },
+    {
+      "id": "R2",
+      "title": "Primary contact CTA is visible",
+      "requirement": "A desktop user shall be able to see the primary contact call to action on the Erbjudanden page.",
+      "observable_outcome": "The CTA 'Jag vill bli kontaktad' is visible.",
+      "acceptance_criteria": [
+        "Given the Erbjudanden page has loaded, then the CTA 'Jag vill bli kontaktad' is visible"
+      ],
+      "candidate_test_cases": [
+        "Verify 'Jag vill bli kontaktad' is visible"
+      ],
+      "priority": "high"
+    },
+    {
+      "id": "R3",
+      "title": "Offer category Customer Experience is visible",
+      "requirement": "A desktop user shall be able to see the Customer Experience offer category on the Erbjudanden page.",
+      "observable_outcome": "The text 'Customer Experience' is visible.",
+      "acceptance_criteria": [
+        "Given the Erbjudanden page has loaded, then 'Customer Experience' is visible"
+      ],
+      "candidate_test_cases": [
+        "Verify 'Customer Experience' is visible"
+      ],
+      "priority": "medium"
+    },
+    {
+      "id": "R4",
+      "title": "Offer category Data & Analytics is visible",
+      "requirement": "A desktop user shall be able to see the Data & Analytics offer category on the Erbjudanden page.",
+      "observable_outcome": "The text 'Data & Analytics' is visible.",
+      "acceptance_criteria": [
+        "Given the Erbjudanden page has loaded, then 'Data & Analytics' is visible"
+      ],
+      "candidate_test_cases": [
+        "Verify 'Data & Analytics' is visible"
+      ],
+      "priority": "medium"
+    },
+    {
+      "id": "R5",
+      "title": "Offer category ERP & Affärssystem is visible",
+      "requirement": "A desktop user shall be able to see the ERP & Affärssystem offer category on the Erbjudanden page.",
+      "observable_outcome": "The text 'ERP & Affärssystem' is visible.",
+      "acceptance_criteria": [
+        "Given the Erbjudanden page has loaded, then 'ERP & Affärssystem' is visible"
+      ],
+      "candidate_test_cases": [
+        "Verify 'ERP & Affärssystem' is visible"
+      ],
+      "priority": "medium"
+    },
+    {
+      "id": "R6",
+      "title": "Offer category Business Transformation is visible",
+      "requirement": "A desktop user shall be able to see the Business Transformation offer category on the Erbjudanden page.",
+      "observable_outcome": "The text 'Business Transformation' is visible.",
+      "acceptance_criteria": [
+        "Given the Erbjudanden page has loaded, then 'Business Transformation' is visible"
+      ],
+      "candidate_test_cases": [
+        "Verify 'Business Transformation' is visible"
+      ],
+      "priority": "medium"
+    },
+    {
+      "id": "R7",
+      "title": "Offer category Kvalitetssäkring is visible",
+      "requirement": "A desktop user shall be able to see the Kvalitetssäkring offer category on the Erbjudanden page.",
+      "observable_outcome": "The text 'Kvalitetssäkring' is visible.",
+      "acceptance_criteria": [
+        "Given the Erbjudanden page has loaded, then 'Kvalitetssäkring' is visible"
+      ],
+      "candidate_test_cases": [
+        "Verify 'Kvalitetssäkring' is visible"
+      ],
+      "priority": "medium"
+    },
+    {
+      "id": "R8",
+      "title": "Offer category UX & Design is visible",
+      "requirement": "A desktop user shall be able to see the UX & Design offer category on the Erbjudanden page.",
+      "observable_outcome": "The text 'UX & Design' is visible.",
+      "acceptance_criteria": [
+        "Given the Erbjudanden page has loaded, then 'UX & Design' is visible"
+      ],
+      "candidate_test_cases": [
+        "Verify 'UX & Design' is visible"
+      ],
+      "priority": "medium"
+    },
+    {
+      "id": "R9",
+      "title": "Offer category Utveckling is visible",
+      "requirement": "A desktop user shall be able to see the Utveckling offer category on the Erbjudanden page.",
+      "observable_outcome": "The text 'Utveckling' is visible.",
+      "acceptance_criteria": [
+        "Given the Erbjudanden page has loaded, then 'Utveckling' is visible"
+      ],
+      "candidate_test_cases": [
+        "Verify 'Utveckling' is visible"
+      ],
+      "priority": "medium"
+    },
+    {
+      "id": "R10",
+      "title": "Offer category Webb & E-handel is visible",
+      "requirement": "A desktop user shall be able to see the Webb & E-handel offer category on the Erbjudanden page.",
+      "observable_outcome": "The text 'Webb & E-handel' is visible.",
+      "acceptance_criteria": [
+        "Given the Erbjudanden page has loaded, then 'Webb & E-handel' is visible"
+      ],
+      "candidate_test_cases": [
+        "Verify 'Webb & E-handel' is visible"
+      ],
+      "priority": "medium"
+    },
+    {
+      "id": "R11",
+      "title": "Offer category AI is visible",
+      "requirement": "A desktop user shall be able to see the AI offer category on the Erbjudanden page.",
+      "observable_outcome": "The text 'AI' is visible.",
+      "acceptance_criteria": [
+        "Given the Erbjudanden page has loaded, then 'AI' is visible"
+      ],
+      "candidate_test_cases": [
+        "Verify 'AI' is visible"
+      ],
+      "priority": "medium"
+    },
+    {
+      "id": "R12",
+      "title": "Contact area is visible",
+      "requirement": "A desktop user shall be able to see a contact area on the Erbjudanden page.",
+      "observable_outcome": "A contact section and visible form fields are present.",
+      "acceptance_criteria": [
+        "Given the Erbjudanden page has loaded, then a contact section is visible",
+        "Given the contact section is visible, then visible form fields are present"
+      ],
+      "candidate_test_cases": [
+        "Verify the contact area is visible",
+        "Verify at least one visible form field is present"
+      ],
+      "priority": "high"
+    },
+    {
+      "id": "R13",
+      "title": "Newsletter area is visible",
+      "requirement": "A desktop user shall be able to see the newsletter signup area on the Erbjudanden page.",
+      "observable_outcome": "The newsletter section and an email input or signup control are visible.",
+      "acceptance_criteria": [
+        "Given the Erbjudanden page has loaded, then the newsletter section is visible",
+        "Given the newsletter section is visible, then an email input or signup control is visible"
+      ],
+      "candidate_test_cases": [
+        "Verify the newsletter area is visible",
+        "Verify an email input or signup button is visible"
+      ],
+      "priority": "medium"
+    }
+  ]
+}
