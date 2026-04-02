@@ -16,21 +16,31 @@
     "Should the contact and newsletter areas later include validation behavior, or remain presence-only?"
   ],
   "requirements": [
+  {
+  "id": "R1",
+  "title": "Erbjudanden page identity is visible",
+  "requirement": "A desktop user shall be able to open the Erbjudanden page and confirm that the correct destination has loaded.",
+  "observable_outcome": "The URL contains '/erbjudanden/' and the heading 'Våra erbjudanden' is visible.",
+  "acceptance_criteria": [
+    "Given the user opens the Erbjudanden page on desktop, when the page finishes loading, then the URL contains '/erbjudanden/'",
+    "Given the page has loaded, then the visible heading 'Våra erbjudanden' is present"
+  ],
+  "candidate_test_cases": [
+    "Verify the URL contains '/erbjudanden/'",
+    "Verify the heading 'Våra erbjudanden' is visible"
+  ],
+  "priority": "high",
+  "assertion_hints": [
     {
-      "id": "R1",
-      "title": "Erbjudanden page identity is visible",
-      "requirement": "A desktop user shall be able to open the Erbjudanden page and confirm that the correct destination has loaded.",
-      "observable_outcome": "The URL contains '/erbjudanden/' and the heading 'Våra erbjudanden' is visible.",
-      "acceptance_criteria": [
-        "Given the user opens the Erbjudanden page on desktop, when the page finishes loading, then the URL contains '/erbjudanden/'",
-        "Given the page has loaded, then the visible heading 'Våra erbjudanden' is present"
-      ],
-      "candidate_test_cases": [
-        "Verify the URL contains '/erbjudanden/'",
-        "Verify the heading 'Våra erbjudanden' is visible"
-      ],
-      "priority": "high"
+      "type": "url_contains",
+      "value": "/erbjudanden/"
     },
+    {
+      "type": "text_visible",
+      "value": "Våra erbjudanden"
+    }
+  ]
+},
     {
       "id": "R2",
       "title": "Primary contact CTA is visible",
@@ -42,7 +52,13 @@
       "candidate_test_cases": [
         "Verify 'Jag vill bli kontaktad' is visible"
       ],
-      "priority": "high"
+      "priority": "high",
+      "assertion_hints": [
+        {
+         "type": "text_visible",
+         "value": "Jag vill bli kontaktad"
+         }
+     ]
     },
     {
       "id": "R3",
@@ -174,7 +190,13 @@
         "Verify the contact area is visible",
         "Verify at least one visible form field is present"
       ],
-      "priority": "high"
+      "priority": "high",
+      "assertion_hints": [
+        {
+         "type": "text_visible_any",
+         "values": ["Förnamn", "Efternamn", "E-post", "Telefon"]
+        }
+      ]
     },
     {
       "id": "R13",
@@ -189,7 +211,13 @@
         "Verify the newsletter area is visible",
         "Verify an email input or signup button is visible"
       ],
-      "priority": "medium"
+      "priority": "medium",
+      "assertion_hints": [
+        {
+         "type": "text_visible_any",
+         "values": ["Prenumerera", "E-postadress", "nyhetsbrev"]
+        }
+       ]
     }
   ]
 }

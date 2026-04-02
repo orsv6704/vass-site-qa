@@ -17,12 +17,33 @@ function regexFromText(text) {
 }
 
 function buildAssertions(req, sourceUrl) {
+  const lines = [`  await page.goto('${escapeForSingleQuote(sourceUrl)}');`];
+
+  const hints = req.assertion_hints || [];
+
+  if (hints.length > 0) {
+    for (const hint of hints) {
+       if (hint.type === 'url_contains') {
+         lines.push(`  await expect(page.url()).toContain('${escapeForSingleQuote(hint.value)}');`);
+      }
+
+      if (hint.type === 'text_visible') {
+        lines.push(`  await expect(page.locator('body')).toContainText(${regexFromText(hint.value)});`);
+      }
+
+      if (hint.type === 'text_visible_any' && Array.isArray(hint.values)) {
+        const joined = hint.values.map(v => escapeForSingleQuote(v)).join('|');
+        lines.push(`  await expect(page.locator('body')).toContainText(/${joined}/i);`);
+      }
+    }
+
+    return lines.join('\n');
+  }
+
   const title = (req.title || '').toLowerCase();
   const requirement = (req.requirement || '').toLowerCase();
   const observable = (req.observable_outcome || '').toLowerCase();
   const allText = `${title} ${requirement} ${observable}`;
-
-  const lines = [`  await page.goto('${escapeForSingleQuote(sourceUrl)}');`];
 
   if (allText.includes('url') || allText.includes('/erbjudanden/')) {
     lines.push(`  await expect(page).toHaveURL(/erbjudanden/i);`);

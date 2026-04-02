@@ -11,9 +11,8 @@ test('R1: Erbjudanden page identity is visible', async ({ page }) => {
   // - Verify the URL contains \'/erbjudanden/\'
   // - Verify the heading \'Våra erbjudanden\' is visible
   await page.goto('https://www.vasscompany.se/erbjudanden/');
-  await expect(page).toHaveURL(/erbjudanden/i);
-  await expect(page.locator('body')).toContainText(/Våra erbjudanden/i);
-  await expect(page.locator('body')).toContainText(/\bAI\b/i);
+  await expect(page.url()).toContain('/erbjudanden/');
+  await expect(page.locator('body')).toContainText(/Våra\s*erbjudanden/i);
 });
 
 test('R2: Primary contact CTA is visible', async ({ page }) => {
@@ -24,7 +23,7 @@ test('R2: Primary contact CTA is visible', async ({ page }) => {
   // Candidate test cases:
   // - Verify \'Jag vill bli kontaktad\' is visible
   await page.goto('https://www.vasscompany.se/erbjudanden/');
-  await expect(page.locator('body')).toContainText(/Jag vill bli kontaktad/i);
+  await expect(page.locator('body')).toContainText(/Jag\s*vill\s*bli\s*kontaktad/i);
 });
 
 test('R3: Offer category Customer Experience is visible', async ({ page }) => {
@@ -150,6 +149,5 @@ test('R13: Newsletter area is visible', async ({ page }) => {
   // - Verify an email input or signup button is visible
   await page.goto('https://www.vasscompany.se/erbjudanden/');
   await expect(page.locator('body')).toContainText(/Prenumerera|E-postadress|nyhetsbrev/i);
-  await expect(page.locator('body')).toContainText(/\bAI\b/i);
 });
 });
