@@ -1,0 +1,12 @@
+
+Feature name: Erbjudanden
+Source URL: https://www.vasscompany.se/erbjudanden/
+
+Please generate updated markdown and JSON for this feature.
+Include assertion_hints for every requirement where possible.
+Keep the scope:
+- desktop only
+- Swedish only
+- smoke level
+- offer categories as separate requirements
+- contact and newsletter as presence checks only

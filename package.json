@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "run:agent": "node scripts/run-requirements-agent.js",
     "generate:tests": "node scripts/generate-playwright-from-json.js",
     "test:e2e": "playwright test",
     "test:e2e:headed": "playwright test --headed",

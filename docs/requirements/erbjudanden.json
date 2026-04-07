@@ -8,39 +8,39 @@
   "assumptions": [
     "The page is publicly accessible",
     "No login is required",
-    "The smoke scope verifies presence and identity, not deep interaction flows",
+    "Smoke scope verifies presence and identity, not deep interaction flows",
     "Offer categories are treated as separate visible requirements"
   ],
   "open_questions": [
-    "Which offer categories are business-critical and should later be upgraded from visibility checks to click/navigation checks?",
+    "Which offer categories are most business-critical and should later be upgraded from visibility checks to click/navigation checks?",
     "Should the contact and newsletter areas later include validation behavior, or remain presence-only?"
   ],
   "requirements": [
-  {
-  "id": "R1",
-  "title": "Erbjudanden page identity is visible",
-  "requirement": "A desktop user shall be able to open the Erbjudanden page and confirm that the correct destination has loaded.",
-  "observable_outcome": "The URL contains '/erbjudanden/' and the heading 'Våra erbjudanden' is visible.",
-  "acceptance_criteria": [
-    "Given the user opens the Erbjudanden page on desktop, when the page finishes loading, then the URL contains '/erbjudanden/'",
-    "Given the page has loaded, then the visible heading 'Våra erbjudanden' is present"
-  ],
-  "candidate_test_cases": [
-    "Verify the URL contains '/erbjudanden/'",
-    "Verify the heading 'Våra erbjudanden' is visible"
-  ],
-  "priority": "high",
-  "assertion_hints": [
     {
-      "type": "url_contains",
-      "value": "/erbjudanden/"
+      "id": "R1",
+      "title": "Erbjudanden page identity is visible",
+      "requirement": "A desktop user shall be able to open the Erbjudanden page and confirm that the correct destination has loaded.",
+      "observable_outcome": "The URL contains '/erbjudanden/' and the heading 'Våra erbjudanden' is visible.",
+      "acceptance_criteria": [
+        "Given the user opens the Erbjudanden page on desktop, when the page finishes loading, then the URL contains '/erbjudanden/'",
+        "Given the page has loaded, then the visible heading 'Våra erbjudanden' is present"
+      ],
+      "candidate_test_cases": [
+        "Verify the URL contains '/erbjudanden/'",
+        "Verify the heading 'Våra erbjudanden' is visible"
+      ],
+      "priority": "high",
+      "assertion_hints": [
+        {
+          "type": "url_contains",
+          "value": "/erbjudanden/"
+        },
+        {
+          "type": "text_visible",
+          "value": "Våra erbjudanden"
+        }
+      ]
     },
-    {
-      "type": "text_visible",
-      "value": "Våra erbjudanden"
-    }
-  ]
-},
     {
       "id": "R2",
       "title": "Primary contact CTA is visible",
@@ -55,23 +55,29 @@
       "priority": "high",
       "assertion_hints": [
         {
-         "type": "text_visible",
-         "value": "Jag vill bli kontaktad"
-         }
-     ]
+          "type": "text_visible",
+          "value": "Jag vill bli kontaktad"
+        }
+      ]
     },
     {
       "id": "R3",
-      "title": "Offer category Customer Experience is visible",
-      "requirement": "A desktop user shall be able to see the Customer Experience offer category on the Erbjudanden page.",
-      "observable_outcome": "The text 'Customer Experience' is visible.",
+      "title": "Offer category Customer Experience & Salesforce is visible",
+      "requirement": "A desktop user shall be able to see the Customer Experience & Salesforce offer category on the Erbjudanden page.",
+      "observable_outcome": "The text 'Customer Experience & Salesforce' is visible.",
       "acceptance_criteria": [
-        "Given the Erbjudanden page has loaded, then 'Customer Experience' is visible"
+        "Given the Erbjudanden page has loaded, then 'Customer Experience & Salesforce' is visible"
       ],
       "candidate_test_cases": [
-        "Verify 'Customer Experience' is visible"
+        "Verify 'Customer Experience & Salesforce' is visible"
       ],
-      "priority": "medium"
+      "priority": "medium",
+      "assertion_hints": [
+        {
+          "type": "text_visible",
+          "value": "Customer Experience & Salesforce"
+        }
+      ]
     },
     {
       "id": "R4",
@@ -84,7 +90,13 @@
       "candidate_test_cases": [
         "Verify 'Data & Analytics' is visible"
       ],
-      "priority": "medium"
+      "priority": "medium",
+      "assertion_hints": [
+        {
+          "type": "text_visible",
+          "value": "Data & Analytics"
+        }
+      ]
     },
     {
       "id": "R5",
@@ -97,7 +109,13 @@
       "candidate_test_cases": [
         "Verify 'ERP & Affärssystem' is visible"
       ],
-      "priority": "medium"
+      "priority": "medium",
+      "assertion_hints": [
+        {
+          "type": "text_visible",
+          "value": "ERP & Affärssystem"
+        }
+      ]
     },
     {
       "id": "R6",
@@ -110,7 +128,13 @@
       "candidate_test_cases": [
         "Verify 'Business Transformation' is visible"
       ],
-      "priority": "medium"
+      "priority": "medium",
+      "assertion_hints": [
+        {
+          "type": "text_visible",
+          "value": "Business Transformation"
+        }
+      ]
     },
     {
       "id": "R7",
@@ -123,7 +147,13 @@
       "candidate_test_cases": [
         "Verify 'Kvalitetssäkring' is visible"
       ],
-      "priority": "medium"
+      "priority": "medium",
+      "assertion_hints": [
+        {
+          "type": "text_visible",
+          "value": "Kvalitetssäkring"
+        }
+      ]
     },
     {
       "id": "R8",
@@ -136,7 +166,13 @@
       "candidate_test_cases": [
         "Verify 'UX & Design' is visible"
       ],
-      "priority": "medium"
+      "priority": "medium",
+      "assertion_hints": [
+        {
+          "type": "text_visible",
+          "value": "UX & Design"
+        }
+      ]
     },
     {
       "id": "R9",
@@ -149,7 +185,13 @@
       "candidate_test_cases": [
         "Verify 'Utveckling' is visible"
       ],
-      "priority": "medium"
+      "priority": "medium",
+      "assertion_hints": [
+        {
+          "type": "text_visible",
+          "value": "Utveckling"
+        }
+      ]
     },
     {
       "id": "R10",
@@ -162,7 +204,13 @@
       "candidate_test_cases": [
         "Verify 'Webb & E-handel' is visible"
       ],
-      "priority": "medium"
+      "priority": "medium",
+      "assertion_hints": [
+        {
+          "type": "text_visible",
+          "value": "Webb & E-handel"
+        }
+      ]
     },
     {
       "id": "R11",
@@ -175,26 +223,32 @@
       "candidate_test_cases": [
         "Verify 'AI' is visible"
       ],
-      "priority": "medium"
+      "priority": "medium",
+      "assertion_hints": [
+        {
+          "type": "text_visible",
+          "value": "AI"
+        }
+      ]
     },
     {
       "id": "R12",
       "title": "Contact area is visible",
       "requirement": "A desktop user shall be able to see a contact area on the Erbjudanden page.",
-      "observable_outcome": "A contact section and visible form fields are present.",
+      "observable_outcome": "A contact section and visible form-related labels are present.",
       "acceptance_criteria": [
         "Given the Erbjudanden page has loaded, then a contact section is visible",
-        "Given the contact section is visible, then visible form fields are present"
+        "Given the contact section is visible, then visible form-related labels are present"
       ],
       "candidate_test_cases": [
         "Verify the contact area is visible",
-        "Verify at least one visible form field is present"
+        "Verify visible labels such as 'Förnamn', 'Efternamn', 'E-post', or 'Telefon' are present"
       ],
       "priority": "high",
       "assertion_hints": [
         {
-         "type": "text_visible_any",
-         "values": ["Förnamn", "Efternamn", "E-post", "Telefon"]
+          "type": "text_visible_any",
+          "values": ["Förnamn", "Efternamn", "E-post", "Telefon"]
         }
       ]
     },
@@ -202,22 +256,22 @@
       "id": "R13",
       "title": "Newsletter area is visible",
       "requirement": "A desktop user shall be able to see the newsletter signup area on the Erbjudanden page.",
-      "observable_outcome": "The newsletter section and an email input or signup control are visible.",
+      "observable_outcome": "Newsletter-related text and controls are visible.",
       "acceptance_criteria": [
         "Given the Erbjudanden page has loaded, then the newsletter section is visible",
-        "Given the newsletter section is visible, then an email input or signup control is visible"
+        "Given the newsletter section is visible, then newsletter-related controls are present"
       ],
       "candidate_test_cases": [
-        "Verify the newsletter area is visible",
-        "Verify an email input or signup button is visible"
+        "Verify newsletter-related text is visible",
+        "Verify visible controls such as 'E-postadress' or 'Prenumerera' are present"
       ],
       "priority": "medium",
       "assertion_hints": [
         {
-         "type": "text_visible_any",
-         "values": ["Prenumerera", "E-postadress", "nyhetsbrev"]
+          "type": "text_visible_any",
+          "values": ["Prenumerera", "E-postadress", "nyhetsbrev"]
         }
-       ]
+      ]
     }
   ]
 }
