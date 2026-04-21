@@ -1,8 +1,40 @@
 const fs = require('fs');
 const path = require('path');
 
-const inputPath = path.join(__dirname, '..', 'docs', 'requirements', 'erbjudanden.json');
-const outputPath = path.join(__dirname, '..', 'tests', 'generated.erbjudanden.spec.ts');
+const args = process.argv.slice(2);
+
+function getFeatureArg() {
+  const featureFlagIndex = args.indexOf('--feature');
+  if (featureFlagIndex !== -1 && args[featureFlagIndex + 1]) {
+    return args[featureFlagIndex + 1];
+  }
+
+  const equalsArg = args.find(arg => arg.startsWith('--feature='));
+  if (equalsArg) {
+    return equalsArg.split('=')[1];
+  }
+
+  const positionalArg = args.find(arg => !arg.startsWith('--'));
+  if (positionalArg) {
+    return positionalArg;
+  }
+
+  if (process.env.npm_config_feature && process.env.npm_config_feature !== 'true') {
+    return process.env.npm_config_feature;
+  }
+
+  return 'erbjudanden';
+}
+
+const feature = getFeatureArg();
+
+const inputPath = path.join(__dirname, '..', 'docs', 'requirements', `${feature}.json`);
+const outputPath = path.join(__dirname, '..', 'tests', `generated.${feature}.spec.ts`);
+
+const featureUrlMap = {
+  erbjudanden: 'https://www.vasscompany.se/erbjudanden/',
+  kontakt: 'https://www.vasscompany.se/kontakt/'
+};
 
 function escapeForSingleQuote(str) {
   return String(str).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
@@ -13,95 +45,48 @@ function regexFromText(text) {
     .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
     .replace(/\s*&\s*/g, '\\s*&\\s*')
     .replace(/\s+/g, '\\s*');
+
   return `/${escaped}/i`;
+}
+
+function regexAlternationFromTexts(values) {
+  const parts = values.map(value =>
+    String(value)
+      .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+      .replace(/\s*&\s*/g, '\\s*&\\s*')
+      .replace(/\s+/g, '\\s*')
+  );
+
+  return `/${parts.join('|')}/i`;
 }
 
 function buildAssertions(req, sourceUrl) {
   const lines = [`  await page.goto('${escapeForSingleQuote(sourceUrl)}');`];
-
   const hints = req.assertion_hints || [];
 
-  if (hints.length > 0) {
-    for (const hint of hints) {
-       if (hint.type === 'url_contains') {
-         lines.push(`  await expect(page.url()).toContain('${escapeForSingleQuote(hint.value)}');`);
-      }
-
-      if (hint.type === 'text_visible') {
-        lines.push(`  await expect(page.locator('body')).toContainText(${regexFromText(hint.value)});`);
-      }
-
-      if (hint.type === 'text_visible_any' && Array.isArray(hint.values)) {
-        const joined = hint.values.map(v => escapeForSingleQuote(v)).join('|');
-        lines.push(`  await expect(page.locator('body')).toContainText(/${joined}/i);`);
-      }
+  for (const hint of hints) {
+    if (hint.type === 'url_contains' && hint.value) {
+      lines.push(
+        `  await expect(page.url()).toContain('${escapeForSingleQuote(hint.value)}');`
+      );
     }
 
-    return lines.join('\n');
-  }
+    if (hint.type === 'text_visible' && hint.value) {
+      lines.push(
+        `  await expect(page.locator('body')).toContainText(${regexFromText(hint.value)});`
+      );
+    }
 
-  const title = (req.title || '').toLowerCase();
-  const requirement = (req.requirement || '').toLowerCase();
-  const observable = (req.observable_outcome || '').toLowerCase();
-  const allText = `${title} ${requirement} ${observable}`;
-
-  if (allText.includes('url') || allText.includes('/erbjudanden/')) {
-    lines.push(`  await expect(page).toHaveURL(/erbjudanden/i);`);
-  }
-
-  if (
-    allText.includes('identity') ||
-    allText.includes('våra erbjudanden') ||
-    title.includes('page identity')
-  ) {
-    lines.push(`  await expect(page.locator('body')).toContainText(/Våra erbjudanden/i);`);
-  }
-
-  if (allText.includes('cta') || allText.includes('kontaktad')) {
-    lines.push(`  await expect(page.locator('body')).toContainText(/Jag vill bli kontaktad/i);`);
-  }
-
-  if (
-    title.includes('contact area') ||
-    allText.includes('contact section') ||
-    allText.includes('form fields')
-  ) {
-    lines.push(`  await expect(page.locator('body')).toContainText(/Förnamn|Efternamn|E-post|Telefon/i);`);
-  }
-
-  if (
-    title.includes('newsletter') ||
-    allText.includes('newsletter') ||
-    allText.includes('signup')
-  ) {
-    lines.push(`  await expect(page.locator('body')).toContainText(/Prenumerera|E-postadress|nyhetsbrev/i);`);
-  }
-
-  const categoryMap = [
-    { key: 'customer experience', text: 'Customer Experience' },
-    { key: 'data & analytics', text: 'Data & Analytics' },
-    { key: 'erp & affärssystem', text: 'ERP & Affärssystem' },
-    { key: 'business transformation', text: 'Business Transformation' },
-    { key: 'kvalitetssäkring', text: 'Kvalitetssäkring' },
-    { key: 'ux & design', text: 'UX & Design' },
-    { key: 'utveckling', text: 'Utveckling' },
-    { key: 'webb & e-handel', text: 'Webb & E-handel' },
-    { key: ' ai ', text: 'AI', exactWord: true }
-  ];
-
-  for (const category of categoryMap) {
-    if (allText.includes(category.key.trim())) {
-      if (category.exactWord) {
-        lines.push(`  await expect(page.locator('body')).toContainText(/\\bAI\\b/i);`);
-      } else {
-        lines.push(`  await expect(page.locator('body')).toContainText(${regexFromText(category.text)});`);
-      }
-      break;
+    if (hint.type === 'text_visible_any' && Array.isArray(hint.values) && hint.values.length > 0) {
+      lines.push(
+        `  await expect(page.locator('body')).toContainText(${regexAlternationFromTexts(hint.values)});`
+      );
     }
   }
 
   if (lines.length === 1) {
-    lines.push(`  await expect(page).toHaveURL(/erbjudanden/i);`);
+    lines.push(`  // No assertion_hints found for this requirement`);
+    lines.push(`  await expect(page.url()).toContain('${escapeForSingleQuote(sourceUrl)}');`);
   }
 
   return lines.join('\n');
@@ -109,7 +94,7 @@ function buildAssertions(req, sourceUrl) {
 
 function buildCommentBlock(req) {
   const comments = [];
-  comments.push(`  // Requirement: ${escapeForSingleQuote(req.requirement || '')}`);
+  comments.push(`  // Requirement: ${escapeForSingleQuote(req.requirement || req.description || '')}`);
 
   if (req.observable_outcome) {
     comments.push(`  // Observable outcome: ${escapeForSingleQuote(req.observable_outcome)}`);
@@ -122,18 +107,12 @@ function buildCommentBlock(req) {
     }
   }
 
-  if (req.candidate_test_cases && req.candidate_test_cases.length) {
-    comments.push(`  // Candidate test cases:`);
-    for (const tc of req.candidate_test_cases) {
-      comments.push(`  // - ${escapeForSingleQuote(tc)}`);
-    }
-  }
-
   return comments.join('\n');
 }
 
 function buildTestBlock(req, sourceUrl) {
-  const testName = `${req.id}: ${req.title}`;
+  const reqId = req.id || 'UNKNOWN';
+  const testName = `${reqId}: ${req.title || 'Untitled requirement'}`;
   const comments = buildCommentBlock(req);
   const assertions = buildAssertions(req, sourceUrl);
 
@@ -153,12 +132,24 @@ function main() {
   const raw = fs.readFileSync(inputPath, 'utf8');
   const data = JSON.parse(raw);
 
-  const requirements = data.requirements || [];
-  const sourceUrl = data.source_url || 'https://www.vasscompany.se/erbjudanden/';
+  const requirements = Array.isArray(data) ? data : (data.requirements || []);
+
+  const sourceUrl =
+    (Array.isArray(data) ? '' : (data.source_url || data.url || '')) ||
+    featureUrlMap[feature] ||
+    '';
+
+  if (!sourceUrl) {
+    throw new Error(`No source_url found in: ${inputPath}`);
+  }
+
+  const featureName = Array.isArray(data)
+    ? feature
+    : (data.feature_name || feature);
 
   const header = `import { test, expect } from '@playwright/test';
 
-test.describe('${escapeForSingleQuote(data.feature_name || 'Generated requirements tests')}', () => {
+test.describe('${escapeForSingleQuote(featureName)}', () => {
 `;
 
   const body = requirements.map(req => buildTestBlock(req, sourceUrl)).join('\n\n');
@@ -170,8 +161,10 @@ test.describe('${escapeForSingleQuote(data.feature_name || 'Generated requiremen
   const output = `${header}${body}${footer}`;
 
   fs.writeFileSync(outputPath, output, 'utf8');
-  console.log(`Generated smarter Playwright tests: ${outputPath}`);
+
+  console.log(`Generated Playwright tests: ${outputPath}`);
   console.log(`Requirements processed: ${requirements.length}`);
+  console.log(`Feature: ${feature}`);
 }
 
 main();

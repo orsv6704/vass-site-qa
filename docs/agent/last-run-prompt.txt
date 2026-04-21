@@ -9,3 +9,9 @@ Keep the scope:
 - smoke level
 - offer categories as separate requirements
 - contact and newsletter as presence checks only
+
+Output format:
+1. One ```md fenced block
+2. One ```json fenced block
+
+Do not include any text before or after those two fenced blocks.

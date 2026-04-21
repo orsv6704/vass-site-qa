@@ -1,0 +1,461 @@
+```md
+# Krav för feature: Kontakt
+
+## Översikt
+Sidan **Kontakta oss** ska på desktop och på svenska visa synligt innehåll för kontakt, kontaktformulär, adressuppgifter, kontaktpersoner och nyhetsbrev enligt sidans textinnehåll.
+
+## Krav
+
+### 1. Sida och rubrik
+- Användaren ska kunna se att sidan avser **Kontakta oss**.
+- Sidans innehåll ska innehålla texten **Kontakta oss**.
+
+### 2. Introduktionstext
+- Sidan ska visa introduktionstexten:
+  - **Vill du veta mer om våra produkter & tjänster eller hur det är att jobba hos oss?**
+  - **Kontakta oss så berättar vi mer.**
+
+### 3. Val mellan kontaktområden
+- Sidan ska visa följande synliga alternativ:
+  - **Tjänster & Produkter**
+  - **Karriärmöjligheter**
+
+### 4. Kontaktformulär för tjänster och produkter
+- Sidan ska visa den beskrivande texten:
+  - **Vill du veta mer om våra produkter & tjänster?**
+  - **Fyll i formuläret så återkommer vi till dig inom kort!**
+- Formuläret ska ha synliga fältetiketter för:
+  - **Förnamn**
+  - **Efternamn**
+  - **E-post**
+  - **Telefon (Valfri)**
+  - **Företag (Valfri)**
+  - **Meddelande (Valfri)**
+- Sidan ska visa samtyckestexten:
+  - **Jag samtycker till att VASS behandlar mina personuppgifter.**
+- Sidan ska visa nyhetsbrevsrelaterad samtyckestext i formuläret:
+  - **Jag samtycker till att VASS kan skicka e-post i marknadsföringssyfte**
+
+### 5. Information om karriär
+- Sidan ska visa texten:
+  - **Se hit om du efter våra lediga tjänster.**
+  - **Vi behandlar inte jobbansökningar i detta formulär.**
+
+### 6. Kontorsinformation Stockholm
+- Sidan ska visa sektionen **Hitta till oss i Stockholm**.
+- Sidan ska visa text om huvudkontoret i Stockholm och internationell närvaro.
+- Följande kontaktuppgifter för Stockholm ska vara synliga:
+  - **Birger Jarlsgatan 9**
+  - **111 45 Stockholm**
+  - **+46(0)8-406 68 00**
+
+### 7. Kontaktpersoner
+- Sidan ska visa rubriken **Kontaktpersoner**.
+- Sidan ska visa kontaktperson för försäljning:
+  - **Försäljning**
+  - **Anders Söderman**
+  - **Försäljningsansvarig**
+- Sidan ska visa kontaktperson för karriär:
+  - **Karriär**
+  - **Sofie Gillberg**
+  - **Rekryteringsansvarig**
+  - **rekrytering@vasscompany.com**
+
+### 8. Nyhetsbrev
+- Sidan ska innehålla en synlig nyhetsbrevssektion med texten:
+  - **Signa upp dig på vårt nyhetsbrev och ta del av eventinbjudningar, nyheter och insikter om den senaste tekniken och trenderna på marknaden.**
+- Nyhetsbrevssektionen ska visa:
+  - **E-postadress**
+  - **Prenumerera**
+  - **Jag samtycker till att VASS behandlar mina personuppgifter .**
+- Förekomst av tackmeddelandet ska kunna verifieras:
+  - **Tack & kul att du vill prenumerera på vårt nyhetsbrev!**
+
+### 9. Kontaktuppgifter i sidfot
+- Sidan ska i synligt innehåll visa:
+  - **Birger Jarlsgatan 9**
+  - **Stockholm**
+  - **+46 8-406 68 00**
+  - **info.se@vasscompany.com**
+
+### 10. Sidfotens länknamn och policytexter
+- Sidan ska visa följande synliga sidfotsinnehåll:
+  - **Erbjudanden**
+  - **Våra kunder**
+  - **Karriär**
+  - **Kurser & Event**
+  - **Insikter**
+  - **Om oss**
+  - **Kontakta oss**
+  - **© 2026 VASS Sweden AB All rights reserved**
+  - **Cookies & Integrity Policy**
+  - **Whistleblower Policy**
+```
+
+```json
+[
+  {
+    "id": "kontakt-001",
+    "title": "Kontakta oss-sidan visas",
+    "requirement": "Sidan ska tydligt visa att användaren befinner sig på Kontakta oss.",
+    "observable_outcome": "Texten 'Kontakta oss' är synlig på sidan.",
+    "acceptance_criteria": [
+      "När sidan öppnas på desktop visas texten 'Kontakta oss'."
+    ],
+    "candidate_test_cases": [
+      "Öppna sidan och verifiera att 'Kontakta oss' är synlig."
+    ],
+    "priority": "high",
+    "assertion_hints": [
+      {
+        "type": "url_contains",
+        "value": "/kontakt"
+      },
+      {
+        "type": "text_visible",
+        "value": "Kontakta oss"
+      }
+    ]
+  },
+  {
+    "id": "kontakt-002",
+    "title": "Introduktionstext visas",
+    "requirement": "Sidan ska visa den inledande beskrivningen om produkter, tjänster och att jobba hos företaget.",
+    "observable_outcome": "Introduktionstexterna är synliga.",
+    "acceptance_criteria": [
+      "Texten 'Vill du veta mer om våra produkter & tjänster eller hur det är att jobba hos oss?' visas.",
+      "Texten 'Kontakta oss så berättar vi mer.' visas."
+    ],
+    "candidate_test_cases": [
+      "Verifiera att båda introduktionstexterna visas i sidans huvudinnehåll."
+    ],
+    "priority": "medium",
+    "assertion_hints": [
+      {
+        "type": "text_visible",
+        "value": "Vill du veta mer om våra produkter & tjänster eller hur det är att jobba hos oss?"
+      },
+      {
+        "type": "text_visible",
+        "value": "Kontakta oss så berättar vi mer."
+      }
+    ]
+  },
+  {
+    "id": "kontakt-003",
+    "title": "Kontaktområden visas",
+    "requirement": "Sidan ska visa val för tjänster/produkter och karriärmöjligheter.",
+    "observable_outcome": "Alternativen 'Tjänster & Produkter' och 'Karriärmöjligheter' är synliga.",
+    "acceptance_criteria": [
+      "Texten 'Tjänster & Produkter' visas.",
+      "Texten 'Karriärmöjligheter' visas."
+    ],
+    "candidate_test_cases": [
+      "Verifiera att båda kontaktområdena är synliga på sidan."
+    ],
+    "priority": "medium",
+    "assertion_hints": [
+      {
+        "type": "text_visible",
+        "value": "Tjänster & Produkter"
+      },
+      {
+        "type": "text_visible",
+        "value": "Karriärmöjligheter"
+      }
+    ]
+  },
+  {
+    "id": "kontakt-004",
+    "title": "Kontaktformulärets fältetiketter visas",
+    "requirement": "Kontaktformuläret för tjänster och produkter ska visa samtliga synliga fältetiketter enligt innehållet.",
+    "observable_outcome": "Formulärtexter och fältetiketter är synliga.",
+    "acceptance_criteria": [
+      "Texten 'Vill du veta mer om våra produkter & tjänster?' visas.",
+      "Texten 'Fyll i formuläret så återkommer vi till dig inom kort!' visas.",
+      "Fältetiketten 'Förnamn' visas.",
+      "Fältetiketten 'Efternamn' visas.",
+      "Fältetiketten 'E-post' visas.",
+      "Fältetiketten 'Telefon (Valfri)' visas.",
+      "Fältetiketten 'Företag (Valfri)' visas.",
+      "Fältetiketten 'Meddelande (Valfri)' visas."
+    ],
+    "candidate_test_cases": [
+      "Verifiera att beskrivningstexten för formuläret visas.",
+      "Verifiera att varje fältetikett i kontaktformuläret är synlig."
+    ],
+    "priority": "high",
+    "assertion_hints": [
+      {
+        "type": "text_visible",
+        "value": "Vill du veta mer om våra produkter & tjänster?"
+      },
+      {
+        "type": "text_visible",
+        "value": "Fyll i formuläret så återkommer vi till dig inom kort!"
+      },
+      {
+        "type": "text_visible",
+        "value": "Förnamn"
+      },
+      {
+        "type": "text_visible",
+        "value": "Efternamn"
+      },
+      {
+        "type": "text_visible",
+        "value": "E-post"
+      },
+      {
+        "type": "text_visible",
+        "value": "Telefon (Valfri)"
+      },
+      {
+        "type": "text_visible",
+        "value": "Företag (Valfri)"
+      },
+      {
+        "type": "text_visible",
+        "value": "Meddelande (Valfri)"
+      }
+    ]
+  },
+  {
+    "id": "kontakt-005",
+    "title": "Samtyckestexter i kontaktformulär visas",
+    "requirement": "Kontaktformuläret ska visa samtyckestext för personuppgifter och marknadsföringsutskick.",
+    "observable_outcome": "Båda samtyckestexterna är synliga.",
+    "acceptance_criteria": [
+      "Texten 'Jag samtycker till att VASS behandlar mina personuppgifter.' visas.",
+      "Texten 'Jag samtycker till att VASS kan skicka e-post i marknadsföringssyfte' visas."
+    ],
+    "candidate_test_cases": [
+      "Verifiera att samtycke för personuppgiftsbehandling visas i formuläret.",
+      "Verifiera att samtycke för marknadsföringsutskick visas i formuläret."
+    ],
+    "priority": "medium",
+    "assertion_hints": [
+      {
+        "type": "text_visible",
+        "value": "Jag samtycker till att VASS behandlar mina personuppgifter."
+      },
+      {
+        "type": "text_visible",
+        "value": "Jag samtycker till att VASS kan skicka e-post i marknadsföringssyfte"
+      }
+    ]
+  },
+  {
+    "id": "kontakt-006",
+    "title": "Karriärinformation visas",
+    "requirement": "Sidan ska visa information om att lediga tjänster hanteras separat och att jobbansökningar inte behandlas i formuläret.",
+    "observable_outcome": "Karriärrelaterade informationsmeddelanden är synliga.",
+    "acceptance_criteria": [
+      "Texten 'Se hit om du efter våra lediga tjänster.' visas.",
+      "Texten 'Vi behandlar inte jobbansökningar i detta formulär.' visas."
+    ],
+    "candidate_test_cases": [
+      "Verifiera att informationstexten om lediga tjänster visas.",
+      "Verifiera att informationstexten om jobbansökningar i formuläret visas."
+    ],
+    "priority": "medium",
+    "assertion_hints": [
+      {
+        "type": "text_visible",
+        "value": "Se hit om du efter våra lediga tjänster."
+      },
+      {
+        "type": "text_visible",
+        "value": "Vi behandlar inte jobbansökningar i detta formulär."
+      }
+    ]
+  },
+  {
+    "id": "kontakt-007",
+    "title": "Stockholmskontorets information visas",
+    "requirement": "Sidan ska visa sektionen för att hitta till kontoret i Stockholm med adress och telefonnummer.",
+    "observable_outcome": "Rubrik, beskrivning, adress och telefon för Stockholm är synliga.",
+    "acceptance_criteria": [
+      "Texten 'Hitta till oss i Stockholm' visas.",
+      "Texten 'Det är i Stockholm vi har vårt huvudkontor.' visas.",
+      "Texten 'Birger Jarlsgatan 9' visas.",
+      "Texten '111 45 Stockholm' visas.",
+      "Texten '+46(0)8-406 68 00' visas."
+    ],
+    "candidate_test_cases": [
+      "Verifiera att rubriken för Stockholm visas.",
+      "Verifiera att adress och telefonnummer för Stockholmskontoret visas."
+    ],
+    "priority": "high",
+    "assertion_hints": [
+      {
+        "type": "text_visible",
+        "value": "Hitta till oss i Stockholm"
+      },
+      {
+        "type": "text_visible",
+        "value": "Det är i Stockholm vi har vårt huvudkontor."
+      },
+      {
+        "type": "text_visible",
+        "value": "Birger Jarlsgatan 9"
+      },
+      {
+        "type": "text_visible",
+        "value": "111 45 Stockholm"
+      },
+      {
+        "type": "text_visible",
+        "value": "+46(0)8-406 68 00"
+      }
+    ]
+  },
+  {
+    "id": "kontakt-008",
+    "title": "Kontaktpersoner visas",
+    "requirement": "Sidan ska visa kontaktpersoner för försäljning och karriär.",
+    "observable_outcome": "Rubriken Kontaktpersoner samt namn, roller och karriärmail är synliga.",
+    "acceptance_criteria": [
+      "Texten 'Kontaktpersoner' visas.",
+      "Texten 'Försäljning' visas.",
+      "Texten 'Anders Söderman' visas.",
+      "Texten 'Försäljningsansvarig' visas.",
+      "Texten 'Karriär' visas.",
+      "Texten 'Sofie Gillberg' visas.",
+      "Texten 'Rekryteringsansvarig' visas.",
+      "Texten 'rekrytering@vasscompany.com' visas."
+    ],
+    "candidate_test_cases": [
+      "Verifiera att sektionen Kontaktpersoner visas.",
+      "Verifiera att kontaktperson för försäljning visas med namn och roll.",
+      "Verifiera att kontaktperson för karriär visas med namn, roll och e-postadress."
+    ],
+    "priority": "high",
+    "assertion_hints": [
+      {
+        "type": "text_visible",
+        "value": "Kontaktpersoner"
+      },
+      {
+        "type": "text_visible",
+        "value": "Försäljning"
+      },
+      {
+        "type": "text_visible",
+        "value": "Anders Söderman"
+      },
+      {
+        "type": "text_visible",
+        "value": "Försäljningsansvarig"
+      },
+      {
+        "type": "text_visible",
+        "value": "Karriär"
+      },
+      {
+        "type": "text_visible",
+        "value": "Sofie Gillberg"
+      },
+      {
+        "type": "text_visible",
+        "value": "Rekryteringsansvarig"
+      },
+      {
+        "type": "text_visible",
+        "value": "rekrytering@vasscompany.com"
+      }
+    ]
+  },
+  {
+    "id": "kontakt-009",
+    "title": "Nyhetsbrev finns",
+    "requirement": "Sidan ska innehålla en synlig nyhetsbrevssektion med e-postfält, prenumerationsknapp, samtyckestext och tackmeddelande som förekomstskontroller.",
+    "observable_outcome": "Nyhetsbrevets innehåll och relaterade texter är synliga.",
+    "acceptance_criteria": [
+      "Texten 'Signa upp dig på vårt nyhetsbrev och ta del av eventinbjudningar, nyheter och insikter om den senaste tekniken och trenderna på marknaden.' visas.",
+      "Texten 'E-postadress' visas.",
+      "Texten 'Prenumerera' visas.",
+      "Texten 'Jag samtycker till att VASS behandlar mina personuppgifter .' visas.",
+      "Texten 'Tack & kul att du vill prenumerera på vårt nyhetsbrev!' kan verifieras som synlig förekomst om den visas på sidan."
+    ],
+    "candidate_test_cases": [
+      "Verifiera att nyhetsbrevssektionen finns.",
+      "Verifiera att e-postadressfält och texten 'Prenumerera' visas.",
+      "Verifiera att samtyckestexten för nyhetsbrev visas.",
+      "Verifiera förekomst av tackmeddelandet om det visas i sidans synliga innehåll."
+    ],
+    "priority": "low",
+    "assertion_hints": [
+      {
+        "type": "text_visible",
+        "value": "Signa upp dig på vårt nyhetsbrev och ta del av eventinbjudningar, nyheter och insikter om den senaste tekniken och trenderna på marknaden."
+      },
+      {
+        "type": "text_visible",
+        "value": "E-postadress"
+      },
+      {
+        "type": "text_visible",
+        "value": "Prenumerera"
+      },
+      {
+        "type": "text_visible",
+        "value": "Jag samtycker till att VASS behandlar mina personuppgifter ."
+      },
+      {
+        "type": "text_visible",
+        "value": "Tack & kul att du vill prenumerera på vårt nyhetsbrev!"
+      }
+    ]
+  },
+  {
+    "id": "kontakt-010",
+    "title": "Sidfotens kontaktuppgifter och länknamn visas",
+    "requirement": "Sidan ska i synligt sidfotsinnehåll visa kontaktuppgifter, navigationslänknamn och policytexter.",
+    "observable_outcome": "Sidfotens adress, telefon, e-post, länknamn och policytexter är synliga.",
+    "acceptance_criteria": [
+      "Texten 'Birger Jarlsgatan 9' visas.",
+      "Texten 'Stockholm' visas.",
+      "Texten '+46 8-406 68 00' visas.",
+      "Texten 'info.se@vasscompany.com' visas.",
+      "Texten 'Erbjudanden' visas.",
+      "Texten 'Våra kunder' visas.",
+      "Texten 'Karriär' visas.",
+      "Texten 'Kurser & Event' visas.",
+      "Texten 'Insikter' visas.",
+      "Texten 'Om oss' visas.",
+      "Texten 'Kontakta oss' visas.",
+      "Texten '© 2026 VASS Sweden AB All rights reserved' visas.",
+      "Texten 'Cookies & Integrity Policy' visas.",
+      "Texten 'Whistleblower Policy' visas."
+    ],
+    "candidate_test_cases": [
+      "Verifiera att sidfoten visar adress, telefonnummer och e-postadress.",
+      "Verifiera att angivna länknamn visas i sidfoten.",
+      "Verifiera att copyright- och policytexter visas i sidfoten."
+    ],
+    "priority": "low",
+    "assertion_hints": [
+      {
+        "type": "text_visible_any",
+        "values": [
+          "Birger Jarlsgatan 9",
+          "Stockholm",
+          "+46 8-406 68 00",
+          "info.se@vasscompany.com",
+          "Erbjudanden",
+          "Våra kunder",
+          "Karriär",
+          "Kurser & Event",
+          "Insikter",
+          "Om oss",
+          "Kontakta oss",
+          "© 2026 VASS Sweden AB All rights reserved",
+          "Cookies & Integrity Policy",
+          "Whistleblower Policy"
+        ]
+      }
+    ]
+  }
+]
+```

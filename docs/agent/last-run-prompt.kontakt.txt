@@ -1,0 +1,35 @@
+Feature name: Kontakt
+Source URL: https://www.vasscompany.se/kontakt/
+
+Use only the page content provided below.
+Do not invent categories, labels, headings, buttons, or sections.
+Only generate requirements for visible content that actually appears in the provided page text.
+If something is uncertain, omit it.
+
+Scope:
+- desktop only
+- Swedish only
+- smoke level
+- contact and newsletter as presence checks only
+
+Output format:
+1. One ```md fenced block
+2. One ```json fenced block
+
+JSON rules:
+- include id
+- include title
+- include requirement
+- include observable_outcome
+- include acceptance_criteria
+- include candidate_test_cases
+- include priority
+- include assertion_hints
+
+Allowed assertion hint types:
+- url_contains
+- text_visible
+- text_visible_any
+
+Page text:
+Kontakta oss - VASS Hoppa till inneh&#xE5;ll S&#xF6;k S&#xF6;k Rensa s&#xF6;kf&#xE4;lt Erbjudanden Erbjudanden Customer Experience Data & Analytics ERP & Aff&#xE4;rssystem Business Transformation Kvalitetss&#xE4;kring UX & Design Utveckling Webb & E-handel AI V&#xE5;ra kunder Karri&#xE4;r Karri&#xE4;r Lediga tj&#xE4;nster Accelerate - For Young Professionals L&#xE4;r k&#xE4;nna oss Insikter Insikter Kurser & Event Artiklar & Guider Partners Partners Adobe Salesforce SAP Optimizely Umbraco Microsoft Om oss Om oss Nyheter H&#xE5;llbarhet S&#xF6;k sv English svenska Kontakta oss Zington byter namn till VASS. Läs mer här Startsida Kontakta oss Kontakta oss Vill du veta mer om våra produkter & tjänster eller hur det är att jobba hos oss? Kontakta oss så berättar vi mer. Tj&#xE4;nster & Produkter Karri&#xE4;rm&#xF6;jligheter Vill du veta mer om våra produkter & tjänster? Fyll i formuläret så återkommer vi till dig inom kort! Se hit om du efter våra lediga tjänster. Vi behandlar inte jobbansökningar i detta formulär. F&#xF6;rnamn Efternamn E-post Telefon (Valfri) F&#xF6;retag (Valfri) Meddelande (Valfri) Jag samtycker till att VASS behandlar mina personuppgifter. Jag samtycker till att VASS kan skicka e-post i marknadsföringssyfte Hitta till oss i Stockholm Det är i Stockholm vi har vårt huvudkontor. Som en del av VASS finns vi också i Madrid, Bogota, London och 20 andra städer. Birger Jarlsgatan 9 111 45 Stockholm +46(0)8-406 68 00 Kom in på en kaffe så berättar vi berätta mer om våra erbjudanden och hur vi kan hjälpa ditt företag att nå sin fulla potential! Kontaktpersoner F&#xF6;rs&#xE4;ljning Anders S&#xF6;derman F&#xF6;rs&#xE4;ljningsansvarig Karri&#xE4;r Sofie Gillberg Rekryteringsansvarig rekrytering@vasscompany.com Signa upp dig p&#xE5; v&#xE5;rt nyhetsbrev och ta del av eventinbjudningar, nyheter och insikter om den senaste tekniken och trenderna p&#xE5; marknaden. E-postadress Prenumerera Jag samtycker till att VASS behandlar mina personuppgifter . Tack & kul att du vill prenumerera på vårt nyhetsbrev! Birger Jarlsgatan 9 Stockholm &#x2B;46 8-406 68 00 info.se@vasscompany.com Erbjudanden V&#xE5;ra kunder Karri&#xE4;r Kurser & Event Insikter Om oss Kontakta oss © 2026 VASS Sweden AB All rights reserved Cookies & Integrity Policy Whistleblower Policy

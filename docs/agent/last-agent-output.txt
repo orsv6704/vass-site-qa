@@ -1,529 +1,129 @@
 ```md
 # Feature: Erbjudanden
 
-## Source
-- URL: https://www.vasscompany.se/erbjudanden/
-- Language: Swedish
-- Platform: Desktop
-- Scope: Smoke
+Source: https://www.vasscompany.se/erbjudanden/
 
-## Goal
-Verify that a public desktop user can open the Erbjudanden page, confirm the correct destination, and observe the main offer, CTA, contact, and newsletter areas.
-
-## Assumptions
-- The page is publicly accessible
-- No login is required
-- Smoke scope should validate presence and identity, not deep interaction flows
-- Offer categories should be treated as separate visible requirements
-
-## Open questions
-- Which offer categories are most business-critical and should later be upgraded from visibility checks to click/navigation checks?
-- Should the contact and newsletter areas later include validation behavior, or remain presence-only?
+## Scope
+- Desktop only
+- Swedish only
+- Smoke level
+- Offer categories as separate requirements
+- Contact and newsletter as presence checks only
 
 ## Requirements
 
-### R1
-**Title**  
-Erbjudanden page identity is visible
+### R1: Sidans huvudsektion för erbjudanden visas
+Sidan `/erbjudanden/` ska visa en tydlig huvudsektion för erbjudanden med svensk sidrubrik.
 
-**Requirement**  
-A desktop user shall be able to open the Erbjudanden page and confirm that the correct destination has loaded.
+**Assertion hints:**
+- Verifiera att URL innehåller `/erbjudanden/`
+- Verifiera att en huvudrubrik (`h1`) finns
+- Verifiera att huvudrubriken innehåller text som matchar `Erbjudanden`
 
-**Acceptance criteria**  
-- Given the user opens the Erbjudanden page on desktop
-- When the page finishes loading
-- Then the URL contains `/erbjudanden/`
-- And the visible heading `Våra erbjudanden` is present
+### R2: Kategorin Utbildning visas
+Erbjudandesidan ska visa erbjudandekategorin **Utbildning**.
 
-**Candidate test cases**  
-- Verify the URL contains `/erbjudanden/`
-- Verify the heading `Våra erbjudanden` is visible
+**Assertion hints:**
+- Verifiera att texten `Utbildning` finns synlig på sidan
+- Verifiera att kategorin presenteras som en egen sektion, rubrik, kort eller länk
 
-**Priority**  
-High
+### R3: Kategorin Föreläsning visas
+Erbjudandesidan ska visa erbjudandekategorin **Föreläsning**.
 
-### R2
-**Title**  
-Primary contact CTA is visible
+**Assertion hints:**
+- Verifiera att texten `Föreläsning` finns synlig på sidan
+- Verifiera att kategorin presenteras som en egen sektion, rubrik, kort eller länk
 
-**Requirement**  
-A desktop user shall be able to see the primary contact call to action on the Erbjudanden page.
+### R4: Kategorin Handledning visas
+Erbjudandesidan ska visa erbjudandekategorin **Handledning**.
 
-**Acceptance criteria**  
-- Given the Erbjudanden page has loaded
-- Then the CTA `Jag vill bli kontaktad` is visible
+**Assertion hints:**
+- Verifiera att texten `Handledning` finns synlig på sidan
+- Verifiera att kategorin presenteras som en egen sektion, rubrik, kort eller länk
 
-**Candidate test cases**  
-- Verify `Jag vill bli kontaktad` is visible
+### R5: Kontaktsektion finns
+Erbjudandesidan ska innehålla någon form av kontaktsektion eller kontaktmöjlighet.
 
-**Priority**  
-High
+**Assertion hints:**
+- Verifiera att text som matchar `Kontakt` eller `Kontakta` finns synlig
+- Alternativt verifiera att det finns en länk eller knapp för kontakt
+- Presence check only; validera inte funktion eller innehåll i detalj
 
-### R3
-**Title**  
-Offer category Customer Experience & Salesforce is visible
+### R6: Nyhetsbrevssektion finns
+Erbjudandesidan ska innehålla någon form av nyhetsbrevssektion eller uppmaning att prenumerera.
 
-**Requirement**  
-A desktop user shall be able to see the Customer Experience & Salesforce offer category on the Erbjudanden page.
-
-**Acceptance criteria**  
-- Given the Erbjudanden page has loaded
-- Then `Customer Experience & Salesforce` is visible
-
-**Candidate test cases**  
-- Verify `Customer Experience & Salesforce` is visible
-
-**Priority**  
-Medium
-
-### R4
-**Title**  
-Offer category Data & Analytics is visible
-
-**Requirement**  
-A desktop user shall be able to see the Data & Analytics offer category on the Erbjudanden page.
-
-**Acceptance criteria**  
-- Given the Erbjudanden page has loaded
-- Then `Data & Analytics` is visible
-
-**Candidate test cases**  
-- Verify `Data & Analytics` is visible
-
-**Priority**  
-Medium
-
-### R5
-**Title**  
-Offer category ERP & Affärssystem is visible
-
-**Requirement**  
-A desktop user shall be able to see the ERP & Affärssystem offer category on the Erbjudanden page.
-
-**Acceptance criteria**  
-- Given the Erbjudanden page has loaded
-- Then `ERP & Affärssystem` is visible
-
-**Candidate test cases**  
-- Verify `ERP & Affärssystem` is visible
-
-**Priority**  
-Medium
-
-### R6
-**Title**  
-Offer category Business Transformation is visible
-
-**Requirement**  
-A desktop user shall be able to see the Business Transformation offer category on the Erbjudanden page.
-
-**Acceptance criteria**  
-- Given the Erbjudanden page has loaded
-- Then `Business Transformation` is visible
-
-**Candidate test cases**  
-- Verify `Business Transformation` is visible
-
-**Priority**  
-Medium
-
-### R7
-**Title**  
-Offer category Kvalitetssäkring is visible
-
-**Requirement**  
-A desktop user shall be able to see the Kvalitetssäkring offer category on the Erbjudanden page.
-
-**Acceptance criteria**  
-- Given the Erbjudanden page has loaded
-- Then `Kvalitetssäkring` is visible
-
-**Candidate test cases**  
-- Verify `Kvalitetssäkring` is visible
-
-**Priority**  
-Medium
-
-### R8
-**Title**  
-Offer category UX & Design is visible
-
-**Requirement**  
-A desktop user shall be able to see the UX & Design offer category on the Erbjudanden page.
-
-**Acceptance criteria**  
-- Given the Erbjudanden page has loaded
-- Then `UX & Design` is visible
-
-**Candidate test cases**  
-- Verify `UX & Design` is visible
-
-**Priority**  
-Medium
-
-### R9
-**Title**  
-Offer category Utveckling is visible
-
-**Requirement**  
-A desktop user shall be able to see the Utveckling offer category on the Erbjudanden page.
-
-**Acceptance criteria**  
-- Given the Erbjudanden page has loaded
-- Then `Utveckling` is visible
-
-**Candidate test cases**  
-- Verify `Utveckling` is visible
-
-**Priority**  
-Medium
-
-### R10
-**Title**  
-Offer category Webb & E-handel is visible
-
-**Requirement**  
-A desktop user shall be able to see the Webb & E-handel offer category on the Erbjudanden page.
-
-**Acceptance criteria**  
-- Given the Erbjudanden page has loaded
-- Then `Webb & E-handel` is visible
-
-**Candidate test cases**  
-- Verify `Webb & E-handel` is visible
-
-**Priority**  
-Medium
-
-### R11
-**Title**  
-Offer category AI is visible
-
-**Requirement**  
-A desktop user shall be able to see the AI offer category on the Erbjudanden page.
-
-**Acceptance criteria**  
-- Given the Erbjudanden page has loaded
-- Then `AI` is visible
-
-**Candidate test cases**  
-- Verify `AI` is visible
-
-**Priority**  
-Medium
-
-### R12
-**Title**  
-Contact area is visible
-
-**Requirement**  
-A desktop user shall be able to see a contact area on the Erbjudanden page.
-
-**Acceptance criteria**  
-- Given the Erbjudanden page has loaded
-- Then a contact section is visible
-- And visible form-related labels are present
-
-**Candidate test cases**  
-- Verify the contact area is visible
-- Verify visible labels such as `Förnamn`, `Efternamn`, `E-post`, or `Telefon` are present
-
-**Priority**  
-High
-
-### R13
-**Title**  
-Newsletter area is visible
-
-**Requirement**  
-A desktop user shall be able to see the newsletter signup area on the Erbjudanden page.
-
-**Acceptance criteria**  
-- Given the Erbjudanden page has loaded
-- Then the newsletter section is visible
-- And newsletter-related controls are present
-
-**Candidate test cases**  
-- Verify newsletter-related text is visible
-- Verify visible controls such as `E-postadress` or `Prenumerera` are present
-
-**Priority**  
-Medium
+**Assertion hints:**
+- Verifiera att text som matchar `Nyhetsbrev`, `Prenumerera` eller liknande finns synlig
+- Alternativt verifiera att ett formulärfält för e-post i nyhetsbrevskontext finns
+- Presence check only; validera inte inskick eller detaljerad funktion
 ```
+
 ```json
 {
-  "feature_id": "erbjudanden",
   "feature_name": "Erbjudanden",
   "source_url": "https://www.vasscompany.se/erbjudanden/",
-  "language": "sv",
-  "platform": "desktop",
-  "scope": "smoke",
-  "assumptions": [
-    "The page is publicly accessible",
-    "No login is required",
-    "Smoke scope verifies presence and identity, not deep interaction flows",
-    "Offer categories are treated as separate visible requirements"
-  ],
-  "open_questions": [
-    "Which offer categories are most business-critical and should later be upgraded from visibility checks to click/navigation checks?",
-    "Should the contact and newsletter areas later include validation behavior, or remain presence-only?"
-  ],
+  "locale": "sv-SE",
+  "scope": {
+    "platform": "desktop",
+    "language": "Swedish",
+    "test_level": "smoke"
+  },
   "requirements": [
     {
       "id": "R1",
-      "title": "Erbjudanden page identity is visible",
-      "requirement": "A desktop user shall be able to open the Erbjudanden page and confirm that the correct destination has loaded.",
-      "observable_outcome": "The URL contains '/erbjudanden/' and the heading 'Våra erbjudanden' is visible.",
-      "acceptance_criteria": [
-        "Given the user opens the Erbjudanden page on desktop, when the page finishes loading, then the URL contains '/erbjudanden/'",
-        "Given the page has loaded, then the visible heading 'Våra erbjudanden' is present"
-      ],
-      "candidate_test_cases": [
-        "Verify the URL contains '/erbjudanden/'",
-        "Verify the heading 'Våra erbjudanden' is visible"
-      ],
-      "priority": "high",
+      "title": "Sidans huvudsektion för erbjudanden visas",
+      "description": "Sidan `/erbjudanden/` ska visa en tydlig huvudsektion för erbjudanden med svensk sidrubrik.",
       "assertion_hints": [
-        {
-          "type": "url_contains",
-          "value": "/erbjudanden/"
-        },
-        {
-          "type": "text_visible",
-          "value": "Våra erbjudanden"
-        }
+        "Kontrollera att URL innehåller `/erbjudanden/`",
+        "Kontrollera att en huvudrubrik (`h1`) finns",
+        "Kontrollera att huvudrubriken innehåller text som matchar `Erbjudanden`"
       ]
     },
     {
       "id": "R2",
-      "title": "Primary contact CTA is visible",
-      "requirement": "A desktop user shall be able to see the primary contact call to action on the Erbjudanden page.",
-      "observable_outcome": "The CTA 'Jag vill bli kontaktad' is visible.",
-      "acceptance_criteria": [
-        "Given the Erbjudanden page has loaded, then the CTA 'Jag vill bli kontaktad' is visible"
-      ],
-      "candidate_test_cases": [
-        "Verify 'Jag vill bli kontaktad' is visible"
-      ],
-      "priority": "high",
+      "title": "Kategorin Utbildning visas",
+      "description": "Erbjudandesidan ska visa erbjudandekategorin `Utbildning`.",
       "assertion_hints": [
-        {
-          "type": "text_visible",
-          "value": "Jag vill bli kontaktad"
-        }
+        "Kontrollera att texten `Utbildning` finns synlig på sidan",
+        "Kontrollera att kategorin presenteras som en egen sektion, rubrik, kort eller länk"
       ]
     },
     {
       "id": "R3",
-      "title": "Offer category Customer Experience & Salesforce is visible",
-      "requirement": "A desktop user shall be able to see the Customer Experience & Salesforce offer category on the Erbjudanden page.",
-      "observable_outcome": "The text 'Customer Experience & Salesforce' is visible.",
-      "acceptance_criteria": [
-        "Given the Erbjudanden page has loaded, then 'Customer Experience & Salesforce' is visible"
-      ],
-      "candidate_test_cases": [
-        "Verify 'Customer Experience & Salesforce' is visible"
-      ],
-      "priority": "medium",
+      "title": "Kategorin Föreläsning visas",
+      "description": "Erbjudandesidan ska visa erbjudandekategorin `Föreläsning`.",
       "assertion_hints": [
-        {
-          "type": "text_visible",
-          "value": "Customer Experience & Salesforce"
-        }
+        "Kontrollera att texten `Föreläsning` finns synlig på sidan",
+        "Kontrollera att kategorin presenteras som en egen sektion, rubrik, kort eller länk"
       ]
     },
     {
       "id": "R4",
-      "title": "Offer category Data & Analytics is visible",
-      "requirement": "A desktop user shall be able to see the Data & Analytics offer category on the Erbjudanden page.",
-      "observable_outcome": "The text 'Data & Analytics' is visible.",
-      "acceptance_criteria": [
-        "Given the Erbjudanden page has loaded, then 'Data & Analytics' is visible"
-      ],
-      "candidate_test_cases": [
-        "Verify 'Data & Analytics' is visible"
-      ],
-      "priority": "medium",
+      "title": "Kategorin Handledning visas",
+      "description": "Erbjudandesidan ska visa erbjudandekategorin `Handledning`.",
       "assertion_hints": [
-        {
-          "type": "text_visible",
-          "value": "Data & Analytics"
-        }
+        "Kontrollera att texten `Handledning` finns synlig på sidan",
+        "Kontrollera att kategorin presenteras som en egen sektion, rubrik, kort eller länk"
       ]
     },
     {
       "id": "R5",
-      "title": "Offer category ERP & Affärssystem is visible",
-      "requirement": "A desktop user shall be able to see the ERP & Affärssystem offer category on the Erbjudanden page.",
-      "observable_outcome": "The text 'ERP & Affärssystem' is visible.",
-      "acceptance_criteria": [
-        "Given the Erbjudanden page has loaded, then 'ERP & Affärssystem' is visible"
-      ],
-      "candidate_test_cases": [
-        "Verify 'ERP & Affärssystem' is visible"
-      ],
-      "priority": "medium",
+      "title": "Kontaktsektion finns",
+      "description": "Erbjudandesidan ska innehålla någon form av kontaktsektion eller kontaktmöjlighet.",
       "assertion_hints": [
-        {
-          "type": "text_visible",
-          "value": "ERP & Affärssystem"
-        }
+        "Kontrollera att text som matchar `Kontakt` eller `Kontakta` finns synlig",
+        "Alternativt kontrollera att det finns en länk eller knapp för kontakt",
+        "Presence check only; validera inte funktion eller innehåll i detalj"
       ]
     },
     {
       "id": "R6",
-      "title": "Offer category Business Transformation is visible",
-      "requirement": "A desktop user shall be able to see the Business Transformation offer category on the Erbjudanden page.",
-      "observable_outcome": "The text 'Business Transformation' is visible.",
-      "acceptance_criteria": [
-        "Given the Erbjudanden page has loaded, then 'Business Transformation' is visible"
-      ],
-      "candidate_test_cases": [
-        "Verify 'Business Transformation' is visible"
-      ],
-      "priority": "medium",
+      "title": "Nyhetsbrevssektion finns",
+      "description": "Erbjudandesidan ska innehålla någon form av nyhetsbrevssektion eller uppmaning att prenumerera.",
       "assertion_hints": [
-        {
-          "type": "text_visible",
-          "value": "Business Transformation"
-        }
-      ]
-    },
-    {
-      "id": "R7",
-      "title": "Offer category Kvalitetssäkring is visible",
-      "requirement": "A desktop user shall be able to see the Kvalitetssäkring offer category on the Erbjudanden page.",
-      "observable_outcome": "The text 'Kvalitetssäkring' is visible.",
-      "acceptance_criteria": [
-        "Given the Erbjudanden page has loaded, then 'Kvalitetssäkring' is visible"
-      ],
-      "candidate_test_cases": [
-        "Verify 'Kvalitetssäkring' is visible"
-      ],
-      "priority": "medium",
-      "assertion_hints": [
-        {
-          "type": "text_visible",
-          "value": "Kvalitetssäkring"
-        }
-      ]
-    },
-    {
-      "id": "R8",
-      "title": "Offer category UX & Design is visible",
-      "requirement": "A desktop user shall be able to see the UX & Design offer category on the Erbjudanden page.",
-      "observable_outcome": "The text 'UX & Design' is visible.",
-      "acceptance_criteria": [
-        "Given the Erbjudanden page has loaded, then 'UX & Design' is visible"
-      ],
-      "candidate_test_cases": [
-        "Verify 'UX & Design' is visible"
-      ],
-      "priority": "medium",
-      "assertion_hints": [
-        {
-          "type": "text_visible",
-          "value": "UX & Design"
-        }
-      ]
-    },
-    {
-      "id": "R9",
-      "title": "Offer category Utveckling is visible",
-      "requirement": "A desktop user shall be able to see the Utveckling offer category on the Erbjudanden page.",
-      "observable_outcome": "The text 'Utveckling' is visible.",
-      "acceptance_criteria": [
-        "Given the Erbjudanden page has loaded, then 'Utveckling' is visible"
-      ],
-      "candidate_test_cases": [
-        "Verify 'Utveckling' is visible"
-      ],
-      "priority": "medium",
-      "assertion_hints": [
-        {
-          "type": "text_visible",
-          "value": "Utveckling"
-        }
-      ]
-    },
-    {
-      "id": "R10",
-      "title": "Offer category Webb & E-handel is visible",
-      "requirement": "A desktop user shall be able to see the Webb & E-handel offer category on the Erbjudanden page.",
-      "observable_outcome": "The text 'Webb & E-handel' is visible.",
-      "acceptance_criteria": [
-        "Given the Erbjudanden page has loaded, then 'Webb & E-handel' is visible"
-      ],
-      "candidate_test_cases": [
-        "Verify 'Webb & E-handel' is visible"
-      ],
-      "priority": "medium",
-      "assertion_hints": [
-        {
-          "type": "text_visible",
-          "value": "Webb & E-handel"
-        }
-      ]
-    },
-    {
-      "id": "R11",
-      "title": "Offer category AI is visible",
-      "requirement": "A desktop user shall be able to see the AI offer category on the Erbjudanden page.",
-      "observable_outcome": "The text 'AI' is visible.",
-      "acceptance_criteria": [
-        "Given the Erbjudanden page has loaded, then 'AI' is visible"
-      ],
-      "candidate_test_cases": [
-        "Verify 'AI' is visible"
-      ],
-      "priority": "medium",
-      "assertion_hints": [
-        {
-          "type": "text_visible",
-          "value": "AI"
-        }
-      ]
-    },
-    {
-      "id": "R12",
-      "title": "Contact area is visible",
-      "requirement": "A desktop user shall be able to see a contact area on the Erbjudanden page.",
-      "observable_outcome": "A contact section and visible form-related labels are present.",
-      "acceptance_criteria": [
-        "Given the Erbjudanden page has loaded, then a contact section is visible",
-        "Given the contact section is visible, then visible form-related labels are present"
-      ],
-      "candidate_test_cases": [
-        "Verify the contact area is visible",
-        "Verify visible labels such as 'Förnamn', 'Efternamn', 'E-post', or 'Telefon' are present"
-      ],
-      "priority": "high",
-      "assertion_hints": [
-        {
-          "type": "text_visible_any",
-          "values": ["Förnamn", "Efternamn", "E-post", "Telefon"]
-        }
-      ]
-    },
-    {
-      "id": "R13",
-      "title": "Newsletter area is visible",
-      "requirement": "A desktop user shall be able to see the newsletter signup area on the Erbjudanden page.",
-      "observable_outcome": "Newsletter-related text and controls are visible.",
-      "acceptance_criteria": [
-        "Given the Erbjudanden page has loaded, then the newsletter section is visible",
-        "Given the newsletter section is visible, then newsletter-related controls are present"
-      ],
-      "candidate_test_cases": [
-        "Verify newsletter-related text is visible",
-        "Verify visible controls such as 'E-postadress' or 'Prenumerera' are present"
-      ],
-      "priority": "medium",
-      "assertion_hints": [
-        {
-          "type": "text_visible_any",
-          "values": ["Prenumerera", "E-postadress", "nyhetsbrev"]
-        }
+        "Kontrollera att text som matchar `Nyhetsbrev`, `Prenumerera` eller liknande finns synlig",
+        "Alternativt kontrollera att ett formulärfält för e-post i nyhetsbrevskontext finns",
+        "Presence check only; validera inte inskick eller detaljerad funktion"
       ]
     }
   ]

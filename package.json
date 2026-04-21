@@ -4,22 +4,28 @@
   "description": "",
   "main": "index.js",
 "scripts": {
-  "run:agent": "node scripts/run-requirements-agent.js",
-  "apply:agent": "node scripts/apply-agent-output.js",
-  "generate:tests": "node scripts/generate-playwright-from-json.js",
-  "summary:tests": "node scripts/summarize-playwright-results.js",
-  "debug:results": "node scripts/debug-playwright-results.js",
-  "full:pipeline": "npm run apply:agent && npm run generate:tests && npx playwright test && npm run summary:tests",
-  "test:e2e": "playwright test",
-  "test:e2e:headed": "playwright test --headed",
-  "report": "playwright show-report"
-},
-  "keywords": [],
+    "fetch:page": "node scripts/fetch-page-text.js",
+    "run:agent:openai": "node scripts/run-agent-openai.js",
+    "apply:agent": "node scripts/apply-agent-output.js",
+    "generate:tests": "node scripts/generate-playwright-from-json.js",
+    "summary:tests": "node scripts/summarize-playwright-results.js",
+
+    "agent:pipeline": "node scripts/agent-pipeline.js",
+
+    "verify:erbjudanden": "node scripts/agent-pipeline.js erbjudanden",
+    "verify:kontakt": "node scripts/agent-pipeline.js kontakt",
+
+    "verify:all": "npm run verify:erbjudanden && npm run verify:kontakt"
+  },
+"keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.5.0"
+  },
+  "dependencies": {
+    "openai": "^6.34.0"
   }
 }
